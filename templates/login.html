@@ -1,0 +1,37 @@
+{% load static %}
+{% static "images" as baseUrl %}
+
+<html>
+<head>
+    
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    </head>
+    <body>
+        <div class="zero" style="background-image: url({% static 'images/BG4.jpg' %});">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+            <button type="button" class="toggle-btn">Log in</button>
+                
+            </div>
+               <form id="login" class="input-group">
+            <input type="text" class="input-field" placeholder="user id" required>
+                <input type="text" class="input-field" placeholder="user password" required>
+               <input type="checkbox" class="checkbox"><span>Remember password</span>
+               <button type="button" class="submit-button"><a style="text-decoration: none;" href="Adminlogin.html">Log In</a></button>
+            </form>
+            
+        </div>
+        </div>
+        <script>
+        
+            
+           
+        var x = document.getElementById("login");
+            var y = document.getElementById("register");
+            var z = document.getElementById("btn");
+           
+        
+        </script>
+    </body>
