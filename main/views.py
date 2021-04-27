@@ -25,16 +25,16 @@ def Log(request):
 
 def adminlogcredentials(request):
     if request.POST['id'] == 'admin' and request.POST['pass'] == 'admin123' :
-        return render(request,'Add station.html')
+        return render(request,'Add-station.html')
 
 def Stationlist(request):
-        return render(request,'Station list.html')
+        return render(request,'Station-list.html')
 
 def adminlogout(request):
         return render(request,'logout.html')
 
 def Addtrains(request):
-        return render(request,'Add trains.html')
+        return render(request,'Add-trains.html')
 
 def Addstation(request):
-        return render(request,'Add station.html')
+        return render(request,'Add-station.html')
