@@ -15,11 +15,12 @@
             <button type="button" class="toggle-btn">Log in</button>
                 
             </div>
-               <form id="login" class="input-group">
-            <input type="text" class="input-field" placeholder="user id" required>
-                <input type="text" class="input-field" placeholder="user password" required>
+            <form action = "/templates/adminlogcredentials" id="login" method = "POST" class="input-group">
+                {% csrf_token %}
+                <input type="text" name= "id" class="input-field" placeholder="user id" required>
+                <input type="text" name = "pass" class="input-field" placeholder="user password" required>
                <input type="checkbox" class="checkbox"><span>Remember password</span>
-               <button type="button" class="submit-button"><a style="text-decoration: none;" href="Adminlogin.html">Log In</a></button>
+               <button type="submit" class="submit-button">Log In</button>
             </form>
             
         </div>
