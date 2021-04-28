@@ -13,7 +13,12 @@ urlpatterns = [
     path('templates/logout.html',views.adminlogout),
     path('templates/Add-trains.html',views.Addtrains),
     path('templates/Add-station.html',views.Addstation),
-    path('templates/addstation',views.AddStationDetails)
+    path('templates/addstation',views.AddStationDetails),
+    path('templates/stationlogcredentials',views.stationlogcredentials),
+    path('templates/Verify-passenger.html',views.verifypassengers),
+    path('templates/Update-profile.html',views.updateprofile),
+    path('templates/S-logout.html',views.slogout),
+    path('templates/verify',views.verify)
     
     
 ]
