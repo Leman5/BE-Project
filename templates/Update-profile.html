@@ -165,24 +165,25 @@
                   <p class="card-category">Enter Data in the Fields that you want to Edit.</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action = "templates/Update-profile" id="update-profile" method = "POST" class="input-group">
+                    {% csrf_token %}
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
                          <!----> <label class="bmd-label-floating">Username</label> 
-                          <input type="text" class="form-control" >
+                          <input name="Username" type="text" class="form-control" >
                         </div>
-                      </div>
+                      </div> 
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label>
-                          <input type="text" class="form-control">
+                          <input name="password" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
+                          <input name="email" type="email" class="form-control">
                         </div>
                       </div>
                     </div>
@@ -190,13 +191,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">First Name</label>
-                          <input type="text" class="form-control">
+                          <input name="fname" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
+                          <input name="lname" type="text" class="form-control">
                         </div>
                       </div>
                     </div>

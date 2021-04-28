@@ -10,3 +10,8 @@ class StationDetails(models.Model):
     city = models.CharField(max_length=50,null=True)
     state = models.CharField(max_length=50,null=True)
     pincode = models.CharField(max_length=10,null=True)
+
+class TrainDetails(models.Model):
+    trainno = models.CharField(max_length=10,unique=True)
+    fromstation = models.CharField(max_length=255,null=True)
+    tostation = models.CharField(max_length=255,null=True)

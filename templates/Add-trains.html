@@ -146,12 +146,13 @@
                   <p class="card-category">Add Trains for Booking.</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action = "/templates/addtrain" id="addtrain" method = "POST" class="input-group">
+                    {% csrf_token %}
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">From Station...</label> 
-                          <input type="text" class="form-control" >
+                          <input name = "fromstation" type="text" class="form-control" >
                         </div>
                       </div>
                       
@@ -161,7 +162,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">To Station...</label>
-                          <input type="text" class="form-control">
+                          <input name = "tostation" type="text" class="form-control">
                         </div>
                       </div>
                       
@@ -178,7 +179,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Train No...</label>
-                          <input type="text" class="form-control">
+                          <input name = "trainno" type="text" class="form-control">
                         </div>
                       </div>
                 <!--<div class="col-md-4">

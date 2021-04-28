@@ -1,10 +1,14 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from passlib.hash import pbkdf2_sha256,bcrypt
-from main.models import StationDetails
+from main.models import StationDetails,TrainDetails
 import cv2
 
 # Create your views here.
+def encryptPassword(password):
+    encrypted = pbkdf2_sha256.encrypt(password,rounds = 1200,salt_size=40)
+    print("password encrypted")
+    return encrypted
 
 def home(request):
     print("Inside Home")
@@ -15,7 +19,11 @@ def loginform(request):
     return render(request,'loginform.html')
 
 def loginstation(request):
-    return render(request,'loginstation.html')
+    s = StationDetails.objects.get(station_username=request.POST['username'])
+    password = request.POST['password']
+    if pbkdf2_sha256.verify(password,s.password):
+        response = render(request,'loginstation.html')
+    return response
 
 def login(request):
     return render(request,'login.html')
@@ -31,13 +39,19 @@ def adminlogcredentials(request):
         return render(request,'Add-station.html')
 
 def Stationlist(request):
-        return render(request,'Station-list.html')
+    s = StationDetails.objects.all()
+    return render(request,'Station-list.html',{'s':s}) #object s has all the stations...use it to display in the table
 
 def adminlogout(request):
         return render(request,'logout.html')
 
 def Addtrains(request):
-        return render(request,'Add-trains.html')
+    t = TrainDetails()
+    t.fromstation = request.POST['fromstation']
+    t.tostation = request.POST['tostation']
+    t.trainno = request.POST['trainno']
+    t.save()
+    return render(request,'Add-trains.html')
 
 def Addstation(request):
         return render(request,'Add-station.html')
@@ -45,7 +59,7 @@ def Addstation(request):
 def AddStationDetails(request):
     s = StationDetails()
     s.station_username = request.POST['username']
-    s.password = request.POST['password']
+    s.password = encryptPassword(request.POST['password'])
     s.email = request.POST['email']
     s.fname = request.POST['fname']
     s.lname = request.POST['lname']
@@ -62,6 +76,12 @@ def verifypassengers(request):
     return render(request,'Verify-passenger.html')
 
 def updateprofile(request):
+    s = StationDetails.objects.get(station_username=request.POST['username'])
+    s.password = encryptPassword(request.POST['password'])
+    s.email = request.POST['email']
+    s.fname = request.POST['fname']
+    s.lname = request.POST['lname']
+    s.save()
     return render(request,'Update-profile.html')
 
 def slogout(request):
