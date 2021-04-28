@@ -165,24 +165,25 @@
                   <p class="card-category">Add Station Masters to verify passengers</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action = "/templates/addstation" id="addstation" method = "POST" class="input-group">
+                    {% csrf_token %}
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
                          <!----> <label class="bmd-label-floating">Username</label> 
-                          <input type="text" class="form-control" >
+                          <input name = "username" type="text" class="form-control" >
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label>
-                          <input type="text" class="form-control">
+                          <input name = "password" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
+                          <input name = "email" type="email" class="form-control">
                         </div>
                       </div>
                     </div>
@@ -190,13 +191,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control">
+                          <input name = "fname" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
+                          <input name = "lname" type="text" class="form-control">
                         </div>
                       </div>
                     </div>
@@ -212,19 +213,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control">
+                          <input name = "city" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">State</label>
-                          <input type="text" class="form-control">
+                          <input name = "state" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Pin Code</label>
-                          <input type="text" class="form-control">
+                          <input name = "pincode" type="text" class="form-control">
                         </div>
                       </div>
                     </div>

@@ -18,7 +18,7 @@
             <form action = "/templates/adminlogcredentials" id="login" method = "POST" class="input-group">
                 {% csrf_token %}
                 <input type="text" name= "id" class="input-field" placeholder="user id" required>
-                <input type="text" name = "pass" class="input-field" placeholder="user password" required>
+                <input type="password" name = "pass" class="input-field" placeholder="user password" required>
                <input type="checkbox" class="checkbox"><span>Remember password</span>
                <button type="submit" class="submit-button">Log In</button>
             </form>

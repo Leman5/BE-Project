@@ -9,10 +9,10 @@ urlpatterns = [
     path('templates/loginstation.html',views.loginstation),
     path('templates/login.html',views.login),
     path('templates/adminlogcredentials',views.adminlogcredentials),
-    path('templates/Station list.html',views.Stationlist),
+    path('templates/Station-list.html',views.Stationlist),
     path('templates/logout.html',views.adminlogout),
-    path('templates/Add trains.html',views.Addtrains),
-    path('templates/Add station.html',views.Addstation)
+    path('templates/Add-trains.html',views.Addtrains),
+    path('templates/Add-station.html',views.Addstation),
     path('/templates/addstation',views.AddStationDetails)
     
     
