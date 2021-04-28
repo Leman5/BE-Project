@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from passlib.hash import pbkdf2_sha256,bcrypt
 from main.models import StationDetails
+import cv2
 
 # Create your views here.
 
@@ -52,7 +53,7 @@ def AddStationDetails(request):
     s.state = request.POST['state']
     s.pincode = request.POST['pincode']
     s.save()
-    return HttpResponse('')
+    return render(request,'Add-station.html')
 
 def stationlogcredentials(request):
     return render(request,'Verify-passenger.html')
