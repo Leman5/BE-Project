@@ -19,11 +19,9 @@ def loginform(request):
     return render(request,'loginform.html')
 
 def loginstation(request):
-    s = StationDetails.objects.get(station_username=request.POST['username'])
-    password = request.POST['password']
-    if pbkdf2_sha256.verify(password,s.password):
-        response = render(request,'loginstation.html')
-    return response
+    return render(request,'loginstation.html')
+    
+    
 
 def login(request):
     return render(request,'login.html')
@@ -46,6 +44,9 @@ def adminlogout(request):
         return render(request,'logout.html')
 
 def Addtrains(request):
+    return render(request,'Add-trains.html')
+
+def AddtrainsDetails(request):
     t = TrainDetails()
     t.fromstation = request.POST['fromstation']
     t.tostation = request.POST['tostation']
@@ -70,18 +71,27 @@ def AddStationDetails(request):
     return render(request,'Add-station.html')
 
 def stationlogcredentials(request):
-    return render(request,'Verify-passenger.html')
+    print(request.POST['uname'])
+    s = StationDetails.objects.get(station_username=request.POST['uname'])
+    password = request.POST['pass']
+    if pbkdf2_sha256.verify(password,s.password):
+        response = render(request,'Verify-passenger.html')
+    return response
 
 def verifypassengers(request):
     return render(request,'Verify-passenger.html')
 
 def updateprofile(request):
+    return render(request,'Update-profile.html')
+
+def updatestation(request):
     s = StationDetails.objects.get(station_username=request.POST['username'])
     s.password = encryptPassword(request.POST['password'])
     s.email = request.POST['email']
     s.fname = request.POST['fname']
     s.lname = request.POST['lname']
     s.save()
+    print("station updated")
     return render(request,'Update-profile.html')
 
 def slogout(request):

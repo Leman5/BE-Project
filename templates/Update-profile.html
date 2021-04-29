@@ -165,13 +165,13 @@
                   <p class="card-category">Enter Data in the Fields that you want to Edit.</p>
                 </div>
                 <div class="card-body">
-                  <form action = "templates/Update-profile" id="update-profile" method = "POST" class="input-group">
+                  <form action = "Update-station" id="update-profile" method = "POST" class="input-group">
                     {% csrf_token %}
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
                          <!----> <label class="bmd-label-floating">Username</label> 
-                          <input name="Username" type="text" class="form-control" >
+                          <input name="username" type="text" class="form-control" >
                         </div>
                       </div> 
                       <div class="col-md-3">

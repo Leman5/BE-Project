@@ -17,8 +17,8 @@
             </div>
             <form id="login" class="input-group" method="POST" action="stationlogcredentials">
                 {% csrf_token %}
-                <input name="username" type="text" class="input-field" placeholder="user id" required>
-                <input name="password" type="text" class="input-field" placeholder="user password" required>
+                <input name="uname" type="text" class="input-field" placeholder="user id" required>
+                <input name="pass" type="text" class="input-field" placeholder="user password" required>
                <input type="checkbox" class="checkbox"><span>Remember password</span>
                <button type="submit" class="submit-button">Log In</button>
             </form>

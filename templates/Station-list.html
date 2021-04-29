@@ -168,10 +168,10 @@
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
-                         <b> Sr.No </b>
+                         <b> First name</b>
                         </th>
                         <th>
-                          <b>Station Master Name</b>
+                          <b>Last name</b>
                         </th>
                         <th>
                           <b>City  </b>
@@ -184,91 +184,25 @@
                         </th>
                       </thead>
                       <tbody>
+                        {% for s in s %}
                         <tr>
                           <td>
-                            1
+                            {{s.fname}}
                           </td>
                           <td>
-                            Dakota Rice
+                            {{s.lname}}
                           </td>
                           <td>
-                            Niger
+                            {{s.city}}
                           </td>
                           <td>
-                            Oud-Turnhout
+                            {{s.state}}
                           </td>
                           <td class="text-primary">
-                            367380
+                            {{s.pincode}}
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Minerva Hooper
-                          </td>
-                          <td>
-                            Curaçao
-                          </td>
-                          <td>
-                            Sinaai-Waas
-                          </td>
-                          <td class="text-primary">
-                            $23,789
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            Sage Rodriguez
-                          </td>
-                          <td>
-                            Netherlands
-                          </td>
-                          <td>
-                            Baileux
-                          </td>
-                          <td class="text-primary">
-                            $56,142
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            Korea, South
-                          </td>
-                          <td>
-                            Overland Park
-                          </td>
-                          <td class="text-primary">
-                            $38,735
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            Malawi
-                          </td>
-                          <td>
-                            Feldkirchen in Kärnten
-                          </td>
-                          <td class="text-primary">
-                            $63,542
-                          </td>
-                        </tr>
+                        {% endfor %}
                        
                       </tbody>
                     </table>

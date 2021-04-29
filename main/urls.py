@@ -18,7 +18,9 @@ urlpatterns = [
     path('templates/Verify-passenger.html',views.verifypassengers),
     path('templates/Update-profile.html',views.updateprofile),
     path('templates/S-logout.html',views.slogout),
-    path('templates/verify',views.verify)
+    path('templates/verify',views.verify),
+    path('templates/Update-station',views.updatestation), 
+    path('templates/AddtrainsDetails',views.AddtrainsDetails)
     
     
 ]
