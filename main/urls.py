@@ -7,6 +7,7 @@ urlpatterns = [
     path('templates/loginform.html',views.loginform),
     path('templates/log',views.Log),
     path('templates/loginstation.html',views.loginstation),
+    path('templates/new_user_register',views.userRegister),
     path('templates/login.html',views.login),
     path('templates/adminlogcredentials',views.adminlogcredentials),
     path('templates/Station-list.html',views.Stationlist),
@@ -21,6 +22,7 @@ urlpatterns = [
     path('templates/verify',views.verify),
     path('templates/Update-station',views.updatestation), 
     path('templates/AddtrainsDetails',views.AddtrainsDetails)
+
     
     
 ]

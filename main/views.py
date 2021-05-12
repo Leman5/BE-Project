@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from passlib.hash import pbkdf2_sha256,bcrypt
-from main.models import StationDetails,TrainDetails
+from main.models import StationDetails,TrainDetails,User
 import cv2
 
 # Create your views here.
@@ -18,10 +18,24 @@ def loginform(request):
     print("user login")
     return render(request,'loginform.html')
 
+def userRegister(request):
+    u = User()
+    userid = request.POST['user_id']
+    u.user_id = userid
+    u.password = encryptPassword(request.POST['password'])
+    u.name = request.POST['user_name']
+    u.email = request.POST['user_email']
+    print("text received successfully.....testing profile pic")
+    i = request.FILES['profile_pic'].name.split(".")
+    print("intially : ",request.FILES['profile_pic'].name)
+    request.FILES['profile_pic'].name = userid + "." + i[-1]
+    u.profile_pic = request.FILES['profile_pic']
+    print("pic stored succesfully")
+    return render(request,'loginform.html')
+
+
 def loginstation(request):
     return render(request,'loginstation.html')
-    
-    
 
 def login(request):
     return render(request,'login.html')
