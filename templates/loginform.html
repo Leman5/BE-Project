@@ -25,15 +25,16 @@
                <input type="checkbox" class="checkbox"><span>Remember password</span>
                <button type="submit" class="submit-button">Log In</button>
             </form>
-            <form id="register" class="input1-group" method="POST" action="new_user_register">
+            <form id="register" class="input1-group" method="POST" enctype="multipart/form-data" action="new_user_register">
+                {% csrf_token %}
                 <!-- <input type="text" class="input-field" placeholder="Unique Identification No(UID)" required> -->
                 <input name="user_name" type="text" class="input-field" placeholder="Name" required>
                 <input name="user_email" type="email" class="input-field" placeholder="Email id" required>
                 <label>Profile Picture :</label> 
-                <span class="profile"><input name = "profile_pic" type="file" class="input-field1" required><b class="size">(Max Size 2mb)</b></span>
+                <span class="profile"><input name = "pro_pic" type="file" class="input-field1" accept="image/*"required><b class="size">(Max Size 2mb)</b></span>
                 <input name="user_id" type="text" class="input-field" placeholder="user id" required>
                 <input name="password" type="text" class="input-field" placeholder="user password" required>
-               <input type="checkbox" class="checkbox"><span class="check">I agree to terms & conditions</span>
+               <input type="checkbox" required class="checkbox"><span class="check">I agree to terms & conditions</span>
                <button type="submit" class="submit-button">Register</button>
             </form>
         </div>

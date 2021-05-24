@@ -17,7 +17,7 @@ class TrainDetails(models.Model):
     tostation = models.CharField(max_length=255,null=True)
 
 def user_directory_path(instance, filename):
-    return '{1}'.format( filename)
+    return filename
 
 class User(models.Model):
     user_id = models.CharField(max_length=100,primary_key=True)

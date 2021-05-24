@@ -26,13 +26,13 @@ def userRegister(request):
     u.name = request.POST['user_name']
     u.email = request.POST['user_email']
     print("text received successfully.....testing profile pic")
-    i = request.FILES['profile_pic'].name.split(".")
-    print("intially : ",request.FILES['profile_pic'].name)
-    request.FILES['profile_pic'].name = userid + "." + i[-1]
-    u.profile_pic = request.FILES['profile_pic']
+    i = request.FILES['pro_pic'].name.split(".")
+    print("intially : ",request.FILES['pro_pic'].name)
+    request.FILES['pro_pic'].name = userid + "." + i[-1]
+    u.profile_pic = request.FILES['pro_pic']
     print("pic stored succesfully")
+    u.save()
     return render(request,'loginform.html')
-
 
 def loginstation(request):
     return render(request,'loginstation.html')
