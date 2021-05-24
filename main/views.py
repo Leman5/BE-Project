@@ -40,10 +40,6 @@ def loginstation(request):
 def login(request):
     return render(request,'login.html')
 
-def Log(request):
-    print(request.POST['id'])
-    print(request.POST['pass'])
-    return render(request,'loginform.html')
 
 
 def adminlogcredentials(request):
@@ -83,6 +79,15 @@ def AddStationDetails(request):
     s.pincode = request.POST['pincode']
     s.save()
     return render(request,'Add-station.html')
+
+def Log(request):
+    print(request.POST['id'])
+    u = User.objects.get(user_id=request.POST['id'])
+    password = request.POST['pass']
+    if pbkdf2_sha256.verify(password,u.password):
+        response = render(request,'Userlogin.html') 
+    # return response    
+    return HttpResponse("wrong password")
 
 def stationlogcredentials(request):
     print(request.POST['uname'])

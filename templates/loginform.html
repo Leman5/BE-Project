@@ -21,7 +21,7 @@
                <form action ="log" id="login" method="POST" class="input-group">
                 {% csrf_token %}
             <input type="text" class="input-field" placeholder="user id" name="id" required>
-                <input type="text" class="input-field" placeholder="user password" name ="pass"required>
+                <input type="password" class="input-field" placeholder="user password" name ="pass"required>
                <input type="checkbox" class="checkbox"><span>Remember password</span>
                <button type="submit" class="submit-button">Log In</button>
             </form>
@@ -33,7 +33,7 @@
                 <label>Profile Picture :</label> 
                 <span class="profile"><input name = "pro_pic" type="file" class="input-field1" accept="image/*"required><b class="size">(Max Size 2mb)</b></span>
                 <input name="user_id" type="text" class="input-field" placeholder="user id" required>
-                <input name="password" type="text" class="input-field" placeholder="user password" required>
+                <input name="password" type="password" class="input-field" placeholder="user password" required>
                <input type="checkbox" required class="checkbox"><span class="check">I agree to terms & conditions</span>
                <button type="submit" class="submit-button">Register</button>
             </form>
