@@ -40,6 +40,8 @@ def loginstation(request):
 def login(request):
     return render(request,'login.html')
 
+
+
 def adminlogcredentials(request):
     if request.POST['id'] == 'admin' and request.POST['pass'] == 'admin123' :
         return render(request,'Add-station.html')

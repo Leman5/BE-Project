@@ -23,4 +23,7 @@ urlpatterns = [
     path('templates/Update-station',views.updatestation), 
     path('templates/AddtrainsDetails',views.AddtrainsDetails),
     path('templates/Userlogin.html',views.Userlogin)
+
+    
+    
 ]

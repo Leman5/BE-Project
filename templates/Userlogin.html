@@ -32,10 +32,17 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-img" style="margin-left: 45px;">
+          <li class="nav-img" style="margin-left: 47px;">
             <a href="#pablo">
-              <img height ="100px" style="border-radius: 13px;" width="100px" class="img" src="{% static 'images/ola.jpeg' %}" >
+              <img height ="100px" style="border-radius: 13px;" width="100px" class="img" src="{{u.profile_pic.url}}" >
             </a>
+          </li>
+          <li class="nav-item">
+            <b class="nav-link">
+              <i class="material-icons"></i>
+              <p style="font-size: 1.5rem;text-align: center;text-decoration: solid;text-transform: capitalize;">{{u.name}}</p>
+            </a>
+          </li>
           <li class="nav-item active ">
             <a class="nav-link" href="./Userlogin.html">
               <i class="material-icons">content_paste</i>
@@ -82,6 +89,28 @@
                 <div class="card-body">
                   <form>
                     <div class=" passengerdetail">
+
+                      <div class="row" style="margin-bottom: 30px;">
+                        <div>
+                          <div>
+                            <label style="padding-right: 15px;padding-left: 15px;">Select Train :</label> 
+                            <span><select style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
+                            padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);">
+                              <option value="none" selected disabled hidden>
+                                Select Train
+                              </option> 
+                              {% for i in t %}
+                              <option value="{{i.trainno}}">{{i.trainno}} - {{i.fromstation}} - {{i.tostation}}</option>
+                              {% endfor %}
+                              
+                            </select></span>
+                          </div>
+                        </div>
+
+                        
+                      </div>
+
+
                       <div class="row">
                         <div class="col-md-5">
                           <div class="form-group">
@@ -103,24 +132,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
-                        <div>
-                          <div>
-                            <label style="padding-right: 15px;padding-left: 15px;">Select Train :</label> 
-                            <span><select style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
-                            padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);">
-                              <option value="none" selected disabled hidden>
-                                Select Train
-                              </option> 
-                              <option value="100011 Pune-Mumbai">100011 Pune-Mumbai</option>
-                              <option value="100012 Pune-Bengaluru">100012 Pune-Bengaluru</option>
-                              <option value="100013 Pune-Chennai">100013 Pune-Chennai</option>
-                            </select></span>
-                          </div>
-                        </div>
-
-                        
-                      </div>
+                      
 
 
 
@@ -203,20 +215,6 @@
           <div class="form-group">
             <label class="bmd-label-floating">UID No :</label>
             <input type="email" class="form-control">
-          </div>
-        </div>
-      </div>
-  
-      <div class="row">
-        <div>
-          <div>
-            <label style="padding-right: 15px;padding-left: 15px;">Select Train :</label> 
-            <span><select style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
-            padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);">
-              <option value="100011 Pune-Mumbai">100011 Pune-Mumbai</option>
-              <option value="100012 Pune-Bengaluru">100012 Pune-Bengaluru</option>
-              <option value="100013 Pune-Chennai">100013 Pune-Chennai</option>
-            </select></span>
           </div>
         </div>
       </div>
