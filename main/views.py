@@ -40,8 +40,6 @@ def loginstation(request):
 def login(request):
     return render(request,'login.html')
 
-
-
 def adminlogcredentials(request):
     if request.POST['id'] == 'admin' and request.POST['pass'] == 'admin123' :
         return render(request,'Add-station.html')
@@ -64,6 +62,9 @@ def AddtrainsDetails(request):
     t.save()
     return render(request,'Add-trains.html')
 
+def trainList():
+    return TrainDetails.objects.all()
+
 def Addstation(request):
         return render(request,'Add-station.html')
 
@@ -85,7 +86,10 @@ def Log(request):
     u = User.objects.get(user_id=request.POST['id'])
     password = request.POST['pass']
     if pbkdf2_sha256.verify(password,u.password):
-        response = render(request,'Userlogin.html') 
+        response = render(request,'Userlogin.html',{'t':trainList(),'u':u}) 
+        #t=list of trains , u = user object
+        response.set_cookie(key="user_id", value=u.user_id)
+        # cookie set
     return response    
     #return HttpResponse("wrong password")
 
