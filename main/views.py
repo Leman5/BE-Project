@@ -85,9 +85,9 @@ def Log(request):
     u = User.objects.get(user_id=request.POST['id'])
     password = request.POST['pass']
     if pbkdf2_sha256.verify(password,u.password):
-        return render(request,'Userlogin.html') 
-    # return response    
-    return HttpResponse("wrong password")
+        response = render(request,'Userlogin.html') 
+    return response    
+    #return HttpResponse("wrong password")
 
 def stationlogcredentials(request):
     print(request.POST['uname'])
@@ -130,9 +130,10 @@ def verify(request):
         if k==27:
             break
     cap.release()
+
     return render(request,'Verify-passenger.html')
     
-def trainList():
-    trains = TrainDetails.objects.all()
-    return trains
 
+
+def Userlogin(request):
+        return render(request,'Userlogin.html')

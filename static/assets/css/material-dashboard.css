@@ -13735,6 +13735,11 @@ fieldset[disabled] .form-group .form-control {
   border-radius: 0;
 }
 
+.nav-img{
+  margin-left: 46px;
+  border-radius: 13px;
+}
+
 .navbar .navbar-nav .nav-item .nav-link {
   position: relative;
   color: inherit;
