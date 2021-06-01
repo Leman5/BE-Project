@@ -149,17 +149,35 @@ def Userlogin(request):
 def passenger_details(request):
     train = request.POST['train']
     max = request.POST['max']
+    print(max)
     name = request.POST['name']
-    name1 = request.POST['name1']
-    name2 = request.POST['name2']
     age = request.POST['age']
-    age1 = request.POST['age1']
-    age2 = request.POST['age2']
     uid = request.POST['uid']
-    uid1 = request.POST['uid1']
-    uid2 = request.POST['uid2']
     image = request.FILES['faceImage']
-    image1 = request.FILES['faceImage1']
-    image2 = request.FILES['faceImage2']
-    print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
+    print(train, max, name, age, uid, image)
+    
+    if max == 1:    
+        print('if')
+        print(train, max, name, age, uid, image)
+
+    elif(max == 2): 
+        print('elif')
+        name1 = request.POST['name1']
+        age1 = request.POST['age1']
+        uid1 = request.POST['uid1']
+        image1 = request.FILES['faceImage1']  
+        print(train, max, name, name1, age, age1, uid, uid1, image, image1)
+
+    elif(max == 3):
+        name1 = request.POST['name1']
+        name2 = request.POST['name2']
+        age1 = request.POST['age1']
+        age2 = request.POST['age2']
+        uid1 = request.POST['uid1']
+        uid2 = request.POST['uid2']
+        image1 = request.FILES['faceImage1']
+        image2 = request.FILES['faceImage2']
+        print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
+
+    
     return render(request,'Userlogin.html')
