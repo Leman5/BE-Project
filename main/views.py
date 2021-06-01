@@ -142,4 +142,24 @@ def verify(request):
 
 
 def Userlogin(request):
-        return render(request,'Userlogin.html')
+    return render(request,'Userlogin.html')
+
+
+
+def passenger_details(request):
+    train = request.POST['train']
+    max = request.POST['max']
+    name = request.POST['name']
+    name1 = request.POST['name1']
+    name2 = request.POST['name2']
+    age = request.POST['age']
+    age1 = request.POST['age1']
+    age2 = request.POST['age2']
+    uid = request.POST['uid']
+    uid1 = request.POST['uid1']
+    uid2 = request.POST['uid2']
+    image = request.FILES['faceImage']
+    image1 = request.FILES['faceImage1']
+    image2 = request.FILES['faceImage2']
+    print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
+    return render(request,'Userlogin.html')

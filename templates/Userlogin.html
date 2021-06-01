@@ -87,14 +87,15 @@
                   <p class="card-category">Enter Passenger Details for Booking Tickets.</p>
                 </div>
                 <div class="card-body">
-                  <form>
-                    <div class=" passengerdetail">
+                  <form id="passenger_details_form" class="needs-validation" action="passenger_details" novalidate method="POST" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="passengerdetail">
 
                       <div class="row" style="margin-bottom: 30px;">
                         <div>
                           <div>
                             <label style="padding-right: 15px;padding-left: 15px;">Select Train :</label> 
-                            <span><select style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
+                            <span><select id="train" style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
                             padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);">
                               <option value="none" selected disabled hidden>
                                 Select Train
@@ -115,19 +116,19 @@
                         <div class="col-md-5">
                           <div class="form-group">
                           <!----> <label class="bmd-label-floating">Name :</label> 
-                            <input type="text" class="form-control" >
+                            <input type="text" id="name" class="form-control" >
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
                             <label class="bmd-label-floating">Age :</label>
-                            <input type="text" class="form-control">
+                            <input type="text" id="age" class="form-control">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label class="bmd-label-floating">UID No :</label>
-                            <input type="email" class="form-control">
+                            <input type="email" id="uid" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -140,7 +141,7 @@
                         <div>
                           <div>
                             <label style="padding-right: 15px;padding-left: 15px;">Face Image :</label>
-                            <span><input type="file" style="content: 'files';width :15rem;
+                            <span><input type="file" id="image" style="content: 'files';width :15rem;
                               display: inline-block;
                               background: linear-gradient(top, #f9f9f9, #e3e3e3);
                               border: 1px solid #999;
@@ -158,7 +159,7 @@
                       
             
                       
-                      <button type="submit" style="margin-top: 30px;margin-left: 10px;" class="btn btn-primary pull-right">Book Tickets</button>
+                      <button type="submit" id="submit_passenger_details" style="margin-top: 30px;margin-left: 10px;" class="btn btn-primary pull-right">Book Tickets</button>
                       <button type="button" style="margin-top: 30px;margin-right: 10px" class="btn btn-primary pull-right add">Add Passenger</button>
                       <div class="clearfix"></div>
                   </form>
@@ -196,25 +197,25 @@
       </script>
     </div>
   </div>
-    <!-- copy -->
+    <!-- copy 1 -->
     <div class="passengerdetailCopy" style="display: none;">
       <div class="row" style="margin-top: 50px;">
         <div class="col-md-5">
           <div class="form-group">
           <!----> <label class="bmd-label-floating">Name :</label> 
-            <input type="text" class="form-control" >
+            <input type="text" id="name1" class="form-control" >
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label class="bmd-label-floating">Age :</label>
-            <input type="text" class="form-control">
+            <input type="text" id="age1" class="form-control">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label class="bmd-label-floating">UID No :</label>
-            <input type="email" class="form-control">
+            <input type="email" id="uid1" class="form-control">
           </div>
         </div>
       </div>
@@ -225,7 +226,7 @@
         <div>
           <div>
             <label style="padding-right: 15px;padding-left: 15px;">Face Image :</label>
-            <span><input type="file" style="content: 'files';width :15rem;
+            <span><input type="file" id="image1" style="content: 'files';width :15rem;
               display: inline-block;
               background: linear-gradient(top, #f9f9f9, #e3e3e3);
               border: 1px solid #999;
@@ -240,6 +241,53 @@
       </div>
     </div>
     <!-- end -->
+
+    <!-- copy 2 -->
+    <div class="passengerdetailCopy2" style="display: none;">
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-md-5">
+          <div class="form-group">
+          <!----> <label class="bmd-label-floating">Name :</label> 
+            <input type="text" id="name2" class="form-control" >
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="bmd-label-floating">Age :</label>
+            <input type="text" id="age2" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="bmd-label-floating">UID No :</label>
+            <input type="email" id="uid2" class="form-control">
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="row">
+        <div>
+          <div>
+            <label style="padding-right: 15px;padding-left: 15px;">Face Image :</label>
+            <span><input type="file" id="image2" style="content: 'files';width :15rem;
+              display: inline-block;
+              background: linear-gradient(top, #f9f9f9, #e3e3e3);
+              border: 1px solid #999;
+              border-radius: 10px;
+              padding: 5px 8px;
+              outline: none;
+              white-space: nowrap;
+              font-weight: 700;
+              font-size: 10pt;" accept="image/*"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end -->
+
+    
     
   <!--   Core JS Files   -->
   <script src="{% static '/assets/js/core/jquery.min.js'%}"></script>
@@ -274,10 +322,19 @@
 
         maxPass = 3;
 
+        var x = 1;
         $(".add").click(function(){
-          if($('body').find('.passengerdetail').length < maxPass){
-            var fieldHTML = '<div class="passengerdetail">'+$(".passengerdetailCopy").html()+'</div>';
+          if(x < maxPass){
+            x++;
+            event.preventDefault();
+            if(x == 2){
+              var fieldHTML = '<div class="passengerdetail">'+$(".passengerdetailCopy").html()+'</div>';
               $('body').find('.passengerdetail:last').after(fieldHTML);
+            }
+            if(x == 3){
+              var fieldHTML = '<div class="passengerdetail">'+$(".passengerdetailCopy2").html()+'</div>';
+              $('body').find('.passengerdetail:last').after(fieldHTML);
+            }
           }else{
               alert('Maximum '+maxPass+' Passengers are allowed.');
           }
@@ -297,6 +354,65 @@
             }
           }
         });
+
+        $(document).on('submit','#passenger_details_form',function(e) {
+          event.preventDefault();
+          event.stopPropagation();
+          alert('clicked');
+          var fileForm = new FormData();
+          var form = $(this);
+          if(x == 1){
+            fileForm.append('csrfmiddlewaretoken',$('input[name=csrfmiddlewaretoken]').val());
+            fileForm.append('dataType', 'passenger_details');
+            fileForm.append('max', x);
+            fileForm.append('train', $(form).find('#train').val())
+            fileForm.append('name', $(form).find('#name').val());
+            fileForm.append('age', $(form).find('#age').val());
+            fileForm.append('uid', $(form).find('#uid').val());
+            fileForm.append('faceImage', $(form).find('#image').prop('files')[0]);
+          }
+          if(x == 2){
+            fileForm.append('csrfmiddlewaretoken',$('input[name=csrfmiddlewaretoken]').val());
+            fileForm.append('dataType', 'passenger_details');
+            fileForm.append('max', x);
+            fileForm.append('train', $(form).find('#train').val())
+            fileForm.append('name', $(form).find('#name').val());
+            fileForm.append('age', $(form).find('#age').val());
+            fileForm.append('uid', $(form).find('#uid').val());
+            fileForm.append('faceImage', $(form).find('#image').prop('files')[0]);
+            fileForm.append('name1', $(form).find('#name1').val());
+            fileForm.append('age1', $(form).find('#age1').val());
+            fileForm.append('uid1', $(form).find('#uid1').val());
+            fileForm.append('faceImage1', $(form).find('#image1').prop('files')[0]);
+          }
+          if(x == 3){
+            fileForm.append('csrfmiddlewaretoken',$('input[name=csrfmiddlewaretoken]').val());
+            fileForm.append('dataType', 'passenger_details');
+            fileForm.append('max', x);
+            fileForm.append('train', $(form).find('#train').val())
+            fileForm.append('name', $(form).find('#name').val());
+            fileForm.append('age', $(form).find('#age').val());
+            fileForm.append('uid', $(form).find('#uid').val());
+            fileForm.append('faceImage', $(form).find('#image').prop('files')[0]);
+            fileForm.append('name1', $(form).find('#name1').val());
+            fileForm.append('age1', $(form).find('#age1').val());
+            fileForm.append('uid1', $(form).find('#uid1').val());
+            fileForm.append('faceImage1', $(form).find('#image1').prop('files')[0]);
+            fileForm.append('name2', $(form).find('#name2').val());
+            fileForm.append('age2', $(form).find('#age2').val());
+            fileForm.append('uid2', $(form).find('#uid2').val());
+            fileForm.append('faceImage2', $(form).find('#image2').prop('files')[0]);
+          }
+          $.ajax({
+              type:'POST',
+              url:'passenger_details',
+              data:fileForm,
+              contentType: false, // NEEDED, DON'T OMIT THIS (requires in jQuery 1.6+)
+              processData: false, // NEEDED, DON'T OMIT THIS
+              cache: false,
+          })
+          
+      });
 
         $('.fixed-plugin .active-color span').click(function() {
           $full_page_background = $('.full-page-background');
