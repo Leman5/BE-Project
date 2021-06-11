@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from passlib.hash import pbkdf2_sha256,bcrypt
-from main.models import StationDetails,TrainDetails,User
+from main.models import StationDetails,TrainDetails,User,Ticket
 import cv2
 
 # Create your views here.
@@ -136,7 +136,6 @@ def verify(request):
         if k==27:
             break
     cap.release()
-
     return render(request,'Verify-passenger.html')
     
 
@@ -146,38 +145,49 @@ def Userlogin(request):
 
 
 
+
 def passenger_details(request):
-    train = request.POST['train']
     max = request.POST['max']
     print(max)
-    name = request.POST['name']
-    age = request.POST['age']
-    uid = request.POST['uid']
-    image = request.FILES['faceImage']
-    print(train, max, name, age, uid, image)
-    
-    if max == 1:    
-        print('if')
-        print(train, max, name, age, uid, image)
-
-    elif(max == 2): 
-        print('elif')
-        name1 = request.POST['name1']
-        age1 = request.POST['age1']
-        uid1 = request.POST['uid1']
-        image1 = request.FILES['faceImage1']  
-        print(train, max, name, name1, age, age1, uid, uid1, image, image1)
-
-    elif(max == 3):
-        name1 = request.POST['name1']
-        name2 = request.POST['name2']
-        age1 = request.POST['age1']
-        age2 = request.POST['age2']
-        uid1 = request.POST['uid1']
-        uid2 = request.POST['uid2']
-        image1 = request.FILES['faceImage1']
-        image2 = request.FILES['faceImage2']
-        print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
-
-    
+    # get a date field from front end
+    saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name'],request.POST['age'],request.POST['uid'],request.FILES['faceImage'])
+    t1 = Ticket(user_id=request.COOKIES.get('user_id'))
+    print("ticket booked for 1st passenger")
+    if(max == '2'): 
+        print('max is 2')
+        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
+        print("ticket booked for 2nd passenger ")
+        # t2 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
+        # t2.passenger_name = request.POST['name1']
+        # t2.age = request.POST['age1']
+        # t2.uid = request.POST['uid1']
+        # t2.image = rename(request.FILES['faceImage1'],t2.uid)
+        # t2.save()
+    elif(max == '3'):
+        # t3 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
+        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
+        print("ticket booked for 2nd passenger ")
+        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name2'],request.POST['age2'],request.POST['uid2'],request.FILES['faceImage2'])
+        print("ticket booked for 3rd passenger")
+        # name = request.POST['name1']
+        # name2 = request.POST['name2']
+        # age1 = request.POST['age1']
+        # age2 = request.POST['age2']
+        # uid1 = request.POST['uid1']
+        # uid2 = request.POST['uid2']
+        # image1 = request.FILES['faceImage1']
+        # image2 = request.FILES['faceImage2']
+        # print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
     return render(request,'Userlogin.html')
+
+def rename(pic,uid):
+    print("intially : ",pic.name)
+    i = pic.name.split(".")
+    pic.name = uid + "." + i[-1]
+    print("later : ",pic.name)
+    return pic
+
+def saveTicket(user_id,train_no,name,age,uid,image):
+    t = Ticket(user_id=user_id,train_no=train_no,passenger_name=name,age=age,uid=uid)
+    t.image = rename(image,uid)
+    t.save()
