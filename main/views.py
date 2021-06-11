@@ -153,7 +153,7 @@ def passenger_details(request):
     saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name'],request.POST['age'],request.POST['uid'],request.FILES['faceImage'])
     t1 = Ticket(user_id=request.COOKIES.get('user_id'))
     print("ticket booked for 1st passenger")
-    if(max == '2'): 
+    if(str(max) == '2'): 
         print('max is 2')
         saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
         print("ticket booked for 2nd passenger ")
@@ -163,7 +163,7 @@ def passenger_details(request):
         # t2.uid = request.POST['uid1']
         # t2.image = rename(request.FILES['faceImage1'],t2.uid)
         # t2.save()
-    elif(max == '3'):
+    elif(str(max) == '3'):
         # t3 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
         saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
         print("ticket booked for 2nd passenger ")
