@@ -147,38 +147,41 @@ def Userlogin(request):
 
 
 def passenger_details(request):
-    max = request.POST['max']
-    print(max)
-    # get a date field from front end
-    saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name'],request.POST['age'],request.POST['uid'],request.FILES['faceImage'])
-    t1 = Ticket(user_id=request.COOKIES.get('user_id'))
-    print("ticket booked for 1st passenger")
-    if(str(max) == '2'): 
-        print('max is 2')
-        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
-        print("ticket booked for 2nd passenger ")
-        # t2 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
-        # t2.passenger_name = request.POST['name1']
-        # t2.age = request.POST['age1']
-        # t2.uid = request.POST['uid1']
-        # t2.image = rename(request.FILES['faceImage1'],t2.uid)
-        # t2.save()
-    elif(str(max) == '3'):
-        # t3 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
-        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
-        print("ticket booked for 2nd passenger ")
-        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name2'],request.POST['age2'],request.POST['uid2'],request.FILES['faceImage2'])
-        print("ticket booked for 3rd passenger")
-        # name = request.POST['name1']
-        # name2 = request.POST['name2']
-        # age1 = request.POST['age1']
-        # age2 = request.POST['age2']
-        # uid1 = request.POST['uid1']
-        # uid2 = request.POST['uid2']
-        # image1 = request.FILES['faceImage1']
-        # image2 = request.FILES['faceImage2']
-        # print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
-    return render(request,'Userlogin.html')
+    try:
+        max = request.POST['max']
+        print(type(max))
+        # get a date field from front end
+        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name'],request.POST['age'],request.POST['uid'],request.FILES['faceImage'])
+        t1 = Ticket(user_id=request.COOKIES.get('user_id'))
+        print("ticket booked for 1st passenger")
+        if(str(max) == '2'): 
+            print('max is 2')
+            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
+            print("ticket booked for 2nd passenger ")
+            # t2 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
+            # t2.passenger_name = request.POST['name1']
+            # t2.age = request.POST['age1']
+            # t2.uid = request.POST['uid1']
+            # t2.image = rename(request.FILES['faceImage1'],t2.uid)
+            # t2.save()
+        elif(str(max) == '3'):
+            # t3 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
+            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
+            print("ticket booked for 2nd passenger ")
+            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name2'],request.POST['age2'],request.POST['uid2'],request.FILES['faceImage2'])
+            print("ticket booked for 3rd passenger")
+            # name = request.POST['name1']
+            # name2 = request.POST['name2']
+            # age1 = request.POST['age1']
+            # age2 = request.POST['age2']
+            # uid1 = request.POST['uid1']
+            # uid2 = request.POST['uid2']
+            # image1 = request.FILES['faceImage1']
+            # image2 = request.FILES['faceImage2']
+            # print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
+        
+    except:
+        return render(request,'Userlogin.html')
 
 def rename(pic,uid):
     print("intially : ",pic.name)
