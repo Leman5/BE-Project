@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, request, response
 from passlib.hash import pbkdf2_sha256,bcrypt
 from main.models import StationDetails,TrainDetails,User,Ticket
 import cv2
 
+#check line no 126 for verify function.
 # Create your views here.
 def encryptPassword(password):
     encrypted = pbkdf2_sha256.encrypt(password,rounds = 1200,salt_size=40)
@@ -122,6 +123,8 @@ def updatestation(request):
 def slogout(request):
     return render(request,'S-logout.html')
 
+#this is verify fuction.
+
 def verify(request):
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     cap = cv2.VideoCapture(0)
@@ -194,3 +197,7 @@ def saveTicket(user_id,train_no,name,age,uid,image):
     t = Ticket(user_id=user_id,train_no=train_no,passenger_name=name,age=age,uid=uid)
     t.image = rename(image,uid)
     t.save()
+
+
+def Booking_history(request):
+    return render(request,'Booking-history.html')

@@ -43,13 +43,13 @@
               <p style="font-size: 1.5rem;text-align: center;text-decoration: solid;text-transform: capitalize;">{{u.name}}</p>
             </a>
           </li>
-          <li class="nav-item active ">
+          <li class="nav-item">
             <a class="nav-link" href="./Userlogin.html">
               <i class="material-icons">content_paste</i>
               <p>Book Tickets</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="./Booking-history.html">
               <i class="material-icons">location_ons</i>
               <p>Booking History </p>
@@ -71,7 +71,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Ticket Booking</a>
+            <a class="navbar-brand" href="javascript:void(0)">Booked Tickets </a>
           </div>
 
         </div>
@@ -83,87 +83,54 @@
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Book Tickets</h4>
-                  <p class="card-category">Enter Passenger Details for Booking Tickets.</p>
+                  <h4 class="card-title">Booked Tickets</h4>
+                  <p class="card-category">This is the list of of Booking History.</p>
                 </div>
                 <div class="card-body">
-                  <form id="passenger_details_form" class="needs-validation" action="passenger_details" novalidate method="POST" enctype="multipart/form-data">
-                    {%csrf_token%}
-                    <div class="passengerdetail">
-
-                      <div class="row" style="margin-bottom: 30px;">
-                        <div>
-                          <div>
-                            <label style="padding-right: 15px;padding-left: 15px;">Select Train :</label> 
-                            <span><select id="train" style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
-                            padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);">
-                              <option value="none" selected disabled hidden>
-                                Select Train
-                              </option> 
-                              {% for i in t %}
-                              <option value="{{i.trainno}}">{{i.trainno}} - {{i.fromstation}} - {{i.tostation}}</option>
-                              {% endfor %}
-                              
-                            </select></span>
-                          </div>
-                        </div>
-
-                        
-                      </div>
-
-
-                      <div class="row">
-                        <div class="col-md-5">
-                          <div class="form-group">
-                          <!----> <label class="bmd-label-floating">Name :</label> 
-                            <input type="text" id="name" class="form-control" >
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Age :</label>
-                            <input type="text" id="age" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">UID No :</label>
-                            <input type="email" id="uid" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-
-                      
-
-
-
-                      <div class="row">
-                        <div>
-                          <div>
-                            <label style="padding-right: 15px;padding-left: 15px;">Face Image :</label>
-                            <span><input type="file" id="image" style="content: 'files';width :15rem;
-                              display: inline-block;
-                              background: linear-gradient(top, #f9f9f9, #e3e3e3);
-                              border: 1px solid #999;
-                              border-radius: 10px;
-                              padding: 5px 8px;
-                              outline: none;
-                              white-space: nowrap;
-                              font-weight: 700;
-                              font-size: 10pt;" accept="image/*"></span>
-                          </div>
-                        </div>
-                    
-                      </div>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th>
+                           <b> Train Name</b>
+                          </th>
+                          <th>
+                            <b>Passenger Name</b>
+                          </th>
+                          <th>
+                            <b>Age  </b>
+                          </th>
+                          <th>
+                          <b> UID </b>
+                          </th>
+                          <th>
+                            <b>Date   </b>
+                          </th>
+                        </thead>
+                        <!-- <tbody>
+                          {% for s in s %}
+                          <tr>
+                            <td>
+                              {{s.fname}}
+                            </td>
+                            <td>
+                              {{s.lname}}
+                            </td>
+                            <td>
+                              {{s.city}}
+                            </td>
+                            <td>
+                              {{s.state}}
+                            </td>
+                            <td class="text-primary">
+                              {{s.pincode}}
+                            </td>
+                          </tr>
+                          {% endfor %}
+                         
+                        </tbody> -->
+                      </table>
                     </div>
-                      
-            
-                      
-                      <button type="submit" id="submit_passenger_details" style="margin-top: 30px;margin-left: 10px;" class="btn btn-primary pull-right">Book Tickets</button>
-                      <button type="button" style="margin-top: 30px;margin-right: 10px" class="btn btn-primary pull-right add">Add Passenger</button>
-                      <div class="clearfix"></div>
-                  </form>
-                </div>
+                  </div>
               </div>
             </div>
 
