@@ -91,7 +91,7 @@
                       <table class="table">
                         <thead class=" text-primary">
                           <th>
-                           <b> Train Name</b>
+                           <b> Train No</b>
                           </th>
                           <th>
                             <b>Passenger Name</b>
@@ -106,28 +106,28 @@
                             <b>Date   </b>
                           </th>
                         </thead>
-                        <!-- <tbody>
-                          {% for s in s %}
+                        <tbody>
+                          {% for p in p %}
                           <tr>
                             <td>
-                              {{s.fname}}
+                              {{p.train_no}}
                             </td>
                             <td>
-                              {{s.lname}}
+                              {{p.passenger_name}}
                             </td>
                             <td>
-                              {{s.city}}
+                              {{p.age}}
                             </td>
                             <td>
-                              {{s.state}}
+                              {{p.uid}}
                             </td>
                             <td class="text-primary">
-                              {{s.pincode}}
+                              {{p.date}}
                             </td>
                           </tr>
                           {% endfor %}
                          
-                        </tbody> -->
+                        </tbody>
                       </table>
                     </div>
                   </div>

@@ -31,6 +31,6 @@ class Ticket(models.Model):
     train_no = models.CharField(max_length=10)
     date = models.CharField(max_length=100,null=True,default=None)
     passenger_name = models.CharField(max_length=100,null=True)
-    uid = models.CharField(max_length=100,null=True)
+    uid = models.CharField(max_length=100,null=True,unique=True)
     age = models.IntegerField()
     image = models.FileField(upload_to=user_directory_path,blank=True, null=True)

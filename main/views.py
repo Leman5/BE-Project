@@ -144,22 +144,26 @@ def verify(request):
 
 
 def Userlogin(request):
-    return render(request,'Userlogin.html')
+    u = User.objects.get(user_id=request.COOKIES.get('user_id'))
+    return render(request,'Userlogin.html',{'t':trainList(),'u':u})
 
 
 
 
 def passenger_details(request):
+    print("Before Try")
     try:
         max = request.POST['max']
-        print(type(max))
+        print("before date")
+        print(type(request.POST['date']))
+        print("after date")
         # get a date field from front end
-        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name'],request.POST['age'],request.POST['uid'],request.FILES['faceImage'])
+        saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name'],request.POST['age'],request.POST['uid'],request.FILES['faceImage'],request.POST['date'])
         t1 = Ticket(user_id=request.COOKIES.get('user_id'))
         print("ticket booked for 1st passenger")
         if(str(max) == '2'): 
             print('max is 2')
-            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
+            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'],request.POST['date'])
             print("ticket booked for 2nd passenger ")
             # t2 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
             # t2.passenger_name = request.POST['name1']
@@ -169,9 +173,9 @@ def passenger_details(request):
             # t2.save()
         elif(str(max) == '3'):
             # t3 = Ticket(user_id=request.COOKIES.get('user_id'),train_no=request.POST['train'])
-            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'])
+            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name1'],request.POST['age1'],request.POST['uid1'],request.FILES['faceImage1'],request.POST['date'])
             print("ticket booked for 2nd passenger ")
-            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name2'],request.POST['age2'],request.POST['uid2'],request.FILES['faceImage2'])
+            saveTicket(request.COOKIES.get('user_id'),request.POST['train'],request.POST['name2'],request.POST['age2'],request.POST['uid2'],request.FILES['faceImage2'],request.POST['date'])
             print("ticket booked for 3rd passenger")
             # name = request.POST['name1']
             # name2 = request.POST['name2']
@@ -184,7 +188,9 @@ def passenger_details(request):
             # print(train, max, name, name1, name2, age, age1, age2, uid, uid1, uid2, image, image1, image2)
         
     except:
-        return render(request,'Userlogin.html')
+        pass
+    u = User.objects.get(user_id=request.COOKIES.get('user_id'))
+    return render(request,'Userlogin.html',{'t':trainList(),'u':u})
 
 def rename(pic,uid):
     print("intially : ",pic.name)
@@ -193,11 +199,13 @@ def rename(pic,uid):
     print("later : ",pic.name)
     return pic
 
-def saveTicket(user_id,train_no,name,age,uid,image):
-    t = Ticket(user_id=user_id,train_no=train_no,passenger_name=name,age=age,uid=uid)
+def saveTicket(user_id,train_no,name,age,uid,image,date):
+    t = Ticket(user_id=user_id,train_no=train_no,date=date,passenger_name=name,age=age,uid=uid)
     t.image = rename(image,uid)
     t.save()
 
 
 def Booking_history(request):
-    return render(request,'Booking-history.html')
+    u = User.objects.get(user_id=request.COOKIES.get('user_id'))
+    p = Ticket.objects.filter(user_id=request.COOKIES.get('user_id'))
+    return render(request,'Booking-history.html',{'u':u,'p':p})

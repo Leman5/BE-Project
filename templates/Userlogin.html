@@ -94,7 +94,7 @@
                       <div class="row" style="margin-bottom: 30px;">
                         <div>
                           <div>
-                            <label style="padding-right: 15px;padding-left: 15px;">Select Train :</label> 
+                            <label style="padding-right: 5px;padding-left: 15px;">Select Train :</label> 
                             <span><select id="train" style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :15rem;
                             padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);">
                               <option value="none" selected disabled hidden>
@@ -105,6 +105,14 @@
                               {% endfor %}
                               
                             </select></span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div>
+                            <label style="padding-right: 5px;padding-left: 15px;">Date :</label> 
+                            <span><input type="date" id="date" style="display: inline-block;border-radius: 10px;font-size: 0.8rem;width :10rem;
+                              padding: 5px 8px;margin-bottom: 10px;color: rgb(34, 5, 5);"></span>
                           </div>
                         </div>
 
@@ -365,7 +373,8 @@
             fileForm.append('csrfmiddlewaretoken',$('input[name=csrfmiddlewaretoken]').val());
             fileForm.append('dataType', 'passenger_details');
             fileForm.append('max', x);
-            fileForm.append('train', $(form).find('#train').val())
+            fileForm.append('train', $(form).find('#train').val());
+            fileForm.append('date', $(form).find('#date').val());
             fileForm.append('name', $(form).find('#name').val());
             fileForm.append('age', $(form).find('#age').val());
             fileForm.append('uid', $(form).find('#uid').val());
@@ -375,7 +384,8 @@
             fileForm.append('csrfmiddlewaretoken',$('input[name=csrfmiddlewaretoken]').val());
             fileForm.append('dataType', 'passenger_details');
             fileForm.append('max', x);
-            fileForm.append('train', $(form).find('#train').val())
+            fileForm.append('train', $(form).find('#train').val());
+            fileForm.append('date', $(form).find('#date').val());
             fileForm.append('name', $(form).find('#name').val());
             fileForm.append('age', $(form).find('#age').val());
             fileForm.append('uid', $(form).find('#uid').val());
@@ -389,7 +399,8 @@
             fileForm.append('csrfmiddlewaretoken',$('input[name=csrfmiddlewaretoken]').val());
             fileForm.append('dataType', 'passenger_details');
             fileForm.append('max', x);
-            fileForm.append('train', $(form).find('#train').val())
+            fileForm.append('train', $(form).find('#train').val());
+            fileForm.append('date', $(form).find('#date').val());
             fileForm.append('name', $(form).find('#name').val());
             fileForm.append('age', $(form).find('#age').val());
             fileForm.append('uid', $(form).find('#uid').val());
