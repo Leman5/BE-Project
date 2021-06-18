@@ -102,6 +102,7 @@ def stationlogcredentials(request):
     password = request.POST['pass']
     if pbkdf2_sha256.verify(password,s.password):
         response = render(request,'Verify-passenger.html')
+        response.set_cookie(key="s_id", value=s.station_username)
     return response
 
 def verifypassengers(request):
@@ -209,3 +210,24 @@ def Booking_history(request):
     u = User.objects.get(user_id=request.COOKIES.get('user_id'))
     p = Ticket.objects.filter(user_id=request.COOKIES.get('user_id'))
     return render(request,'Booking-history.html',{'u':u,'p':p})
+
+def return_homepage(request):
+    
+    try:
+        response = render(request,'loginform.html')
+        print(request.COOKIES['user_id'])
+        response.delete_cookie('user_id')
+        print("Deleted cookies")
+        
+    except:
+        response = render(request,'loginstation.html')
+        print(request.COOKIES['s_id'])
+        response.delete_cookie('s_id')
+        print("Deleted station cookies")
+        
+
+    return response
+
+
+    
+
