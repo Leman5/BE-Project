@@ -6,7 +6,7 @@ from datetime import datetime
 
 # from PIL import ImageGrab
 
-path = 'Training_images'
+path = 'uid_pics'
 images = []
 classNames = []
 myList = os.listdir(path)
@@ -84,7 +84,6 @@ while True:
             print('e')
            # markAttendance(name)
             print('Face verified',name)
-
         else:
             unknown = "Mulla Spotted"
             y1, x2, y2, x1 = faceLoc

@@ -1,4 +1,5 @@
 from django.db import models
+from main.storage import OverwriteStorage
 
 # Create your models here.
 class StationDetails(models.Model):
@@ -26,6 +27,9 @@ class User(models.Model):
     email = models.EmailField(max_length=200,unique=True)
     profile_pic = models.FileField(upload_to=user_directory_path,blank=True, null=True)
 
+def uid_directory_path(instance, filename):
+    return '{0}/{1}'.format("uid_pics", filename)
+
 class Ticket(models.Model):
     user_id = models.CharField(max_length=100,null=True)
     train_no = models.CharField(max_length=10)
@@ -33,4 +37,4 @@ class Ticket(models.Model):
     passenger_name = models.CharField(max_length=100,null=True)
     uid = models.CharField(max_length=100,null=True,unique=True)
     age = models.IntegerField()
-    image = models.FileField(upload_to=user_directory_path,blank=True, null=True)
+    image = models.FileField(upload_to=uid_directory_path,storage=OverwriteStorage(),blank=True, null=True)
