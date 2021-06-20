@@ -128,9 +128,9 @@ def slogout(request):
 #this is verify fuction.
 
 def verify(request):
-    mainverification()
+    v = mainverification()
     print("Verification Done")
-    return render(request,'index.html')
+    return render(request,'index.html',{'verified_passenger':v})
     
 
 

@@ -4,6 +4,7 @@ import face_recognition
 import os
 from datetime import datetime
 import time
+from main.models import Ticket
 
 # from PIL import ImageGrab
 def findEncodings(images):
@@ -45,7 +46,6 @@ def mainverification():
 
 
 
-
     #### FOR CAPTURING SCREEN RATHER THAN WEBCAM
     # def captureScreen(bbox=(300,300,690+300,530+300)):
     #     capScr = np.array(ImageGrab.grab(bbox))
@@ -59,15 +59,12 @@ def mainverification():
 
     t_end = time.time() + 10 * 2
     while time.time() < t_end:
-        success, img = cap.read()
-    # img = captureScreen()
-        
+        success, img = cap.read()        
         imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
         imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
 
         facesCurFrame = face_recognition.face_locations(imgS)
         encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame)
-
         for encodeFace, faceLoc in zip(encodesCurFrame, facesCurFrame):
             matches = face_recognition.compare_faces(encodeListKnown, encodeFace)
             faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
@@ -76,7 +73,8 @@ def mainverification():
 
             if matches[matchIndex]:
                 uid = classNames[matchIndex].upper()
-                print(type(name))
+                print(type(uid))
+                verified_passenger = Ticket.objects.get(uid=uid)
                 y1, x2, y2, x1 = faceLoc
                 print('a')
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
@@ -87,10 +85,10 @@ def mainverification():
                 print('d')
                 cv2.putText(img, uid, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
                 print('e')
-            # markAttendance(name)
                 print('Face verified',uid)
             else:
                 unknown = "Unknown Passenger"
+                verified_passenger  = None
                 y1, x2, y2, x1 = faceLoc
                 print('a')
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
@@ -106,3 +104,4 @@ def mainverification():
         if (cv2.waitKey(1)==ord('q')):
                 break 
     cv2.destroyAllWindows()
+    return verified_passenger
