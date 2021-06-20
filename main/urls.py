@@ -25,7 +25,10 @@ urlpatterns = [
     path('templates/Userlogin.html',views.Userlogin),
     path('templates/passenger_details',views.passenger_details),
     path('templates/Booking-history.html',views.Booking_history),
-    path('templates/return-homepage',views.return_homepage)
+    path('templates/return-homepage',views.return_homepage),
+    path('templates/Userlogout.html',views.Userlogout),
+    path('templates/adminlogout',views.adminlogout1)
+
 
     
     

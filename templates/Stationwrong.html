@@ -13,8 +13,10 @@
             <div class="button-box">
                 <div id="btn"></div>
             <button type="button" class="toggle-btn">Log in</button>
+            
                 
             </div>
+            <label style="color: red;padding-left: 20px;position: absolute;top: 30%;">*You have Entered wrong Credentials.</label>
             <form id="login" class="input-group" method="POST" action="stationlogcredentials">
                 {% csrf_token %}
                 <input name="uname" type="text" class="input-field" placeholder="user id" required>
@@ -27,5 +29,3 @@
         </div>
         <script>
         
-            
-           

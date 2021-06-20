@@ -18,19 +18,7 @@ def findEncodings(images):
     return encodeList
 
 
-def markAttendance(name):
-    with open('Attendance.csv', 'r+') as f:
-        myDataList = f.readlines()
 
-
-        nameList = []
-        for line in myDataList:
-            entry = line.split(',')
-            nameList.append(entry[0])
-            if name not in nameList:
-                now = datetime.now()
-                dtString = now.strftime('%H:%M:%S')
-                f.writelines(f'\n{name},{dtString}')
 
 def mainverification():
     path = 'media/uid_pics'
@@ -57,11 +45,16 @@ def mainverification():
 
     cap = cv2.VideoCapture(0)
 
-    t_end = time.time() + 10 * 2
+    verified_passenger = None
+    
+
+    t_end = time.time() + 10 * 6
     while time.time() < t_end:
+        print("Inside While")
         success, img = cap.read()        
         imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
         imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+        print("Started Reading")
 
         facesCurFrame = face_recognition.face_locations(imgS)
         encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame)
@@ -70,6 +63,7 @@ def mainverification():
             faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
             print(faceDis)
             matchIndex = np.argmin(faceDis)
+
 
             if matches[matchIndex]:
                 uid = classNames[matchIndex].upper()
@@ -83,12 +77,19 @@ def mainverification():
                 print('c')
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
                 print('d')
-                cv2.putText(img, uid, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-                print('e')
-                print('Face verified',uid)
+                if(verified_passenger.boarded == "True"):
+                    cv2.putText(img, "Already Boarded", (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+                    print('e in if ')
+                    print('Face verified',uid)                  
+
+                else:
+                    cv2.putText(img, uid, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+                    print('e in else')
+                    print('Face verified',uid)
+                
             else:
                 unknown = "Unknown Passenger"
-                verified_passenger  = None
+                
                 y1, x2, y2, x1 = faceLoc
                 print('a')
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4

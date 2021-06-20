@@ -38,3 +38,4 @@ class Ticket(models.Model):
     uid = models.CharField(max_length=100,null=True,unique=True)
     age = models.IntegerField()
     image = models.FileField(upload_to=uid_directory_path,storage=OverwriteStorage(),blank=True, null=True)
+    boarded = models.CharField(max_length=10,default="False")

@@ -47,6 +47,8 @@ def login(request):
 def adminlogcredentials(request):
     if request.POST['id'] == 'admin' and request.POST['pass'] == 'admin123' :
         return render(request,'Add-station.html')
+    else:
+        return render(request,'adminwrong.html')
 
 def Stationlist(request):
     s = StationDetails.objects.all()
@@ -54,6 +56,9 @@ def Stationlist(request):
 
 def adminlogout(request):
         return render(request,'logout.html')
+
+def adminlogout1(request):
+        return render(request,'login.html')
 
 def Addtrains(request):
     return render(request,'Add-trains.html')
@@ -94,6 +99,8 @@ def Log(request):
         #t=list of trains , u = user object
         response.set_cookie(key="user_id", value=u.user_id)
         # cookie set
+    else:
+        response = render(request,'Wrongpass.html')
     return response    
     #return HttpResponse("wrong password")
 
@@ -104,6 +111,8 @@ def stationlogcredentials(request):
     if pbkdf2_sha256.verify(password,s.password):
         response = render(request,'Verify-passenger.html')
         response.set_cookie(key="s_id", value=s.station_username)
+    else:
+        response = render(request,'Stationwrong.html')
     return response
 
 def verifypassengers(request):
@@ -129,8 +138,15 @@ def slogout(request):
 
 def verify(request):
     v = mainverification()
+    if(v!= None):
+        v.boarded = "True"
+        v.save()
+        print("Boarded  == True")
+        response = render(request,'Verified.html',{'verified_passenger':v})
+    else:
+        response = render(request,'Unverified.html')
     print("Verification Done")
-    return render(request,'index.html',{'verified_passenger':v})
+    return response
     
 
 
@@ -201,6 +217,10 @@ def Booking_history(request):
     p = Ticket.objects.filter(user_id=request.COOKIES.get('user_id'))
     return render(request,'Booking-history.html',{'u':u,'p':p})
 
+def Userlogout(request):
+    u = User.objects.get(user_id=request.COOKIES.get('user_id'))
+    return render(request,'Userlogout.html',{'u':u})
+
 def return_homepage(request):
     
     try:
@@ -218,6 +238,20 @@ def return_homepage(request):
 
     return response
 
-
+def verification(request):
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    cap = cv2.VideoCapture(0)
+    while True:
+        _, img = cap.read()
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+        for (x, y, w, h) in faces:
+            cv2.rectangle(img, (x, y),(x+w, y+h),(255, 0, 0), 2) 
+        cv2.imshow('img', img)
+        k = cv2.waitKey(30) & 0xff
+        if k==27:
+            break
+    cap.release()
+    return render(request,'Verify-passenger.html')
     
 
